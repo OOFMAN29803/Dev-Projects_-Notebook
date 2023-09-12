@@ -3,6 +3,10 @@
 <head>
 <title>Docs Lite</title>
 <style>
+body {
+background-color: #D9D9D9;
+}
+
 .mainarea {
 width: 1300px;
 height: 650px;
@@ -10,15 +14,20 @@ padding: 10px;
 border-radius: 10px;
 font-family: Arial;
 resize: none;
+background-color: #F7F7F7;
+border: 0px solid;
+shadow: 1px 1px 0px 0px;
 }
+
 
 .divtop {
 width: 1350px;
 height: 60px;
-border: 1px solid;
+border: 1px solid #9cc2ff;
 border-radius: 30px;
 margin-bottom: 30px;
 margin-top: 20px;
+background-color: #9cc2ff;
 }
 
 .size {
@@ -27,7 +36,7 @@ height: 20px;
 font-size: 15px;
 margin-left: -200px;
 margin-top: 1px; 
-margin-right: 40px;
+margin-right: 10px;
 border: 1px solid #CECECE;
 border-radius: 2px;
 
@@ -36,15 +45,15 @@ border-radius: 2px;
 .font {
 width: 100px;
 height: 20px;
-margin-right: 40px;
-border: 1px solid #CECECE;
+margin-right: 10px;
+border: 0px solid #CECECE;
 border-radius: 2px;
 }
 
 .color {
 width: 100px;
 height: 20px;
-margin-right: 40px;
+margin-right: 10px;
 border: 1px solid #CECECE;
 border-radius: 2px;
 }
@@ -54,8 +63,8 @@ font-size: 25px;
 }
 
 .button2 {
-margin-left: 40px;
-margin-right: 20px;
+margin-left: 10px;
+margin-right: 10px;
 background-color: white;
 transition: transform 0.3s ease;
 border: 0px solid;
@@ -86,7 +95,7 @@ border-radius: 7px;
 }
 
 .button3 {
-margin-left: 40px;
+margin-left: 10px;
 transition: transform 0.3s ease;
 border: 0px solid;
 background-color: white;
@@ -108,7 +117,7 @@ font-family: Arial;
 }
 
 ::-webkit-scrollbar {
-  width: 7px; 
+  width: 5px; 
 }
 
 
@@ -121,9 +130,9 @@ border-radius: 6px;
 <body> 
 
 <input class="input" placeholder="Add the title here..." id="input" maxlength=25></input><p class="output" id="output"></p>
-<center><div class="divtop"><p class="fontp"></p><input class="size" id="sizeinput"></input><input class="font" id="fontinput" placeholder="Font..."></input><input class="color" id="colorinput" placeholder="Color..."><button class="downloadbutton" onclick="downloadtxt()">Download</button></input><button onclick="bold()" class="button2">Bold Font</button><button class="button2" onclick="normal()">Normal Font</button><button class="button3" onclick="alignleft()">Left Align</button><button class="button2" onclick="alignright()">Right Align</button><button class="button2" onclick="aligncenter()">Center Align</button></div>
+<center><div class="divtop"><p class="fontp"></p><input class="size" id="sizeinput"></input><input class="font" id="fontinput" placeholder="Font..."></input><input class="color" id="colorinput" placeholder="Color..."><button class="downloadbutton" onclick="downloadtxt()">Download</button></input><button onclick="bold()" class="button2">Bold Font</button><button class="button2" onclick="normal()">Normal Font</button><button class="button3" onclick="alignleft()">Left Align</button><button class="button2" onclick="alignright()">Right Align</button><button class="button2" onclick="aligncenter()">Center Align</button><button class="button2" onclick="underline()">Underline</button><button class="button2" onclick="notunderline()">Not Underlined</button></div>
 <textarea class="mainarea" id="textarea"></textarea></center>
-<center><p class="demo">Light Docs V 0.1 Alpha Test</p></center>
+<center><p class="demo">Light Docs V 0.2lpha Test</p></center>
 <center><p class="demo2">Remember to Save!</p></center>
 <script>
 var boldpress = 1;
@@ -189,6 +198,16 @@ var textarea = document.getElementById("textarea")
 textarea.style.fontWeight = "400"
 }
 
+function notunderline() {
+var textarea = document.getElementById("textarea")
+textarea.style.textDecoration = "none"
+}
+
+function underline() {
+var textarea = document.getElementById("textarea")
+textarea.style.textDecoration = "underline"
+}
+
 function alignleft() {
 var textarea = document.getElementById("textarea")
 textarea.style.textAlign = "left"
@@ -203,6 +222,23 @@ function alignright() {
 var textarea = document.getElementById("textarea")
 textarea.style.textAlign = "right"
 }
+
+function newpage()  {
+const newpage = document.createElement("textarea");
+newpage.style.width = "1300px";
+newpage.style.height = "650px";
+newpage.style.padding = "10px";
+newpage.style.borderRadius = "10px";
+newpage.style.fontFamily = "Arial";
+newpage.style.resize = "none";
+newpage.style.backgroundColor = "#F7F7F7";
+newpage.style.border = "0px solid";
+newpage.style.shadow = "1px 1px 0px 0px";
+newpage.style.marginTop = "50px";
+document.body.appendChild(newpage);
+
+}
+
 </script>
 </body>
 </html>
