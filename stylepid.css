@@ -1,0 +1,111 @@
+body {
+background-image: linear-gradient(to bottom right, #0090FF, #00eeff);
+repeat: none;
+background-repeat: no-repeat;  
+background-size: cover;   
+}
+
+#textarea {
+width: 99%;
+height: 900px;
+padding: 10px;
+border-radius: 10px;
+font-family: Arial;
+resize: none;
+background-color: #F7F7F7;
+border: 0px solid;
+shadow: 1px 1px 0px 0px;
+
+}
+
+
+.divtop {
+width: 1350px;
+height: 60px;
+border: 1px solid #00D2FF;
+border-radius: 30px;
+margin-bottom: 30px;
+margin-top: 20px;
+background-color: #00D2FF;
+}
+
+.size {
+width: 20px;
+height: 20px;
+font-size: 15px;
+margin-left: -150px; 
+margin-right: 10px;
+border: 0px solid #CECECE;
+border-radius: 5px;
+
+}
+
+.font {
+width: 100px;
+height: 20px;
+margin-right: 10px;
+border: 0px solid #CECECE;
+border-radius: 5px;
+}
+
+.color {
+width: 100px;
+height: 20px;
+margin-right: 10px;
+border: 0px solid #CECECE;
+border-radius: 5px;
+}
+.output {
+font-family: Sans-serif;
+font-size: 25px;
+}
+
+button {
+transition: transform 0.3s ease;
+border: 0px solid;
+background-color: white;
+border-radius: 4px;
+margin-left: 5px;
+transition: ease 0.3s;
+}
+
+button:hover {
+background-color: #CECECE;
+}
+
+.input {
+width: 300px;
+height: 30px;
+font-size: 20px;
+border-radius: 7px;
+border: none;
+}
+
+.demo {
+font-size: 35px;
+font-family: Arial;
+}
+
+.demo2 {
+font-size: 25px;
+font-family: Arial;
+}
+
+.page {
+font-family: Sans-Serif;
+font-size: 17px;
+}
+.pagediv {
+position: fixed;
+top: 2%;
+right: 2%;
+width: 100px;
+height: 50px;
+background-color: #e8fdff;
+opacity: 0.3;
+border-radius: 20px;
+transition: ease 0.2s
+}
+.pagediv:hover {
+opacity: 1;
+}

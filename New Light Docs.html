@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Docs Lite</title>
+<link rel="stylesheet" type="text/css" href="stylepid.css">
+</head>
+<body> 
+
+<input class="input" placeholder="Add the title here..." id="input" maxlength=25></input><p class="output" id="output"></p>
+<center><div class="divtop"><p class="fontp"></p><input class="size" id="sizeinput"></input><input class="font" id="fontinput" placeholder="Font..."></input><input class="color" id="colorinput" placeholder="Color..."><button class="downloadbutton" onclick="downloadtxt()">Download</button></input><button onclick="bold()" class="button2">Bold Font</button><button class="button2" onclick="normal()">Normal Font</button><button class="button3" onclick="alignleft()">Left Align</button><button class="button2" onclick="alignright()">Right Align</button><button class="button2" onclick="aligncenter()">Center Align</button><button class="button2" onclick="underline()">Underline</button><button class="button2" onclick="notunderline()">Not Underlined</button><button class="button2" onclick="newpage()">+</button><button onclick="tts()">Text to Speech</button><button id="savebutton" onclick="save()">Auto Save</button><div class="pagediv"><p id="page" class="page">Pages: 1</p></div></div>
+<textarea class="mainarea" id="textarea"></textarea>
+<script>
+var boldpress = 1
+var time = 60000000
+var page = 1
+function size() {
+var sizetext = document.getElementById("textarea")
+var sizeinput = document.getElementById("sizeinput").value
+sizetext.style.fontSize = sizeinput + "px"
+}
+setInterval(size, 10)
+
+function name() {
+var input = document.getElementById("input").value;
+var output = document.getElementById("output");
+output.textContent = input;
+var namefile = output.textContent
+}
+setInterval(name, 10)
+
+function color() {
+var colortext = document.getElementById("textarea")
+var colorinput = document.getElementById("colorinput").value
+colortext.style.color = colorinput
+}
+
+setInterval(color, 10)
+
+function font() {
+var fonttext = document.getElementById("textarea")
+var fontinput = document.getElementById("fontinput").value
+fonttext.style.fontFamily = fontinput
+}
+
+setInterval(font, 10)
+
+
+const handleCtrl1 = (e) => {
+  if (e.ctrlKey && e.keyCode === 49) { // The `Ctrl`+`1` key code is 49
+    downloadtxt();
+  }
+};
+
+document.addEventListener('keydown', handleCtrl1);
+
+function bold() {
+var textarea = document.getElementById("textarea")
+textarea.style.fontWeight = "bold"
+}
+
+function normal() {
+var textarea = document.getElementById("textarea")
+textarea.style.fontWeight = "400"
+}
+
+function notunderline() {
+var textarea = document.getElementById("textarea")
+textarea.style.textDecoration = "none"
+}
+
+function underline() {
+var textarea = document.getElementById("textarea")
+textarea.style.textDecoration = "underline"
+}
+
+function alignleft() {
+var textarea = document.getElementById("textarea")
+textarea.style.textAlign = "left"
+}
+
+function aligncenter() {
+var textarea = document.getElementById("textarea")
+textarea.style.textAlign = "center"
+}
+
+function alignright() {
+var textarea = document.getElementById("textarea")
+textarea.style.textAlign = "right"
+}
+
+function newpage()  {
+page = page + 1
+var ppage = document.getElementById("page")
+ppage.textContent = "Pages: " + page
+const newpage = document.createElement("textarea");
+newpage.id = "textarea"
+document.body.appendChild(newpage)
+}
+function save() {
+  var autobutton = document.getElementById("savebutton");
+  autobutton.disabled = true;
+  var time = "30000"; 
+  downloadtxt();
+}
+
+function downloadtxt() {
+    const textareas = document.querySelectorAll('textarea');
+    const textValues = [];
+    textareas.forEach(textarea => {
+        textValues.push(textarea.value);
+    });
+    const htmlContent = textValues.join('\n');
+    const blob = new Blob([htmlContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = document.getElementById("input").value + '.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
+
+setInterval(downloadtxt, time)
+
+function tts() {
+  const textareas = document.querySelectorAll("textarea");
+  let textToSpeak = '';
+  textareas.forEach((textarea) => {
+    textToSpeak += textarea.value + '\n'; 
+  });
+  const speechSynthesis = window.speechSynthesis;
+  const utterance = new SpeechSynthesisUtterance(textToSpeak);
+  const voices = speechSynthesis.getVoices();
+  utterance.voice = voices[3];
+  utterance.rate = 0.7;
+  speechSynthesis.speak(utterance);
+}
+
+
+
+</script>
+</body>
+</html>
