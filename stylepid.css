@@ -15,7 +15,7 @@ resize: none;
 background-color: #F7F7F7;
 border: 0px solid;
 shadow: 1px 1px 0px 0px;
-transition: 0.2s ease;
+transition: 1s ease;
 }
 #textarea:hover {
 width: 99%;
@@ -28,11 +28,11 @@ width: 99%;
 .divtop {
 width: 1350px;
 height: 60px;
-border: 1px solid #00D2FF;
+border: 1px solid #49A3FF;
 border-radius: 30px;
 margin-bottom: 30px;
 margin-top: 20px;
-background-color: #00D2FF;
+background-color: #49A3FF;
 }
 
 .size {
@@ -60,6 +60,7 @@ width: 100px;
 }
 .font:focus {
 width: 100px;
+border: none;
 }
 
 .color {
@@ -73,9 +74,11 @@ transition: 0.3s ease;
 
 .color:hover {
 width: 100px;
+
 }
 .color:focus {
 width: 100px;
+border: none;
 }
 .output {
 font-family: Sans-serif;
@@ -89,10 +92,16 @@ background-color: white;
 border-radius: 4px;
 margin-left: 5px;
 transition: ease 0.3s;
+height: 50px;
+margin-top: -20px;
+font-weight: bold;
+background-color: #3190FA;
+color: white;
+user-select: none;
 }
 
 button:hover {
-background-color: #CECECE;
+background-color: #3279EE;
 }
 
 .input {
@@ -140,4 +149,70 @@ transition: ease 0.2s
 .pagediv:hover {
 opacity: 1;
 background-color: white;
+width: 150px;
+height: 50px;
+}
+
+#menuside {
+position: fixed;
+right: 1%;
+top: 15%;
+border-radius: 20px;
+width: 450px;
+height: 700px; 
+display: none;
+background-color: #49A3FF;
+border: none;
+box-shadow: 2px 2px 2px grey;
+}
+
+.menu {
+transition: transform 0.3s ease;
+border: 0px solid;
+border-radius: 4px;
+margin-left: 5px;
+transition: ease 0.3s;
+height: 50px;
+margin-top: -50px;
+margin-left: 1250px;
+font-weight: bold;
+background-color: #3190FA;
+color: white;
+user-select: none;
+width: 50px;
+}
+
+.menu:hover {
+background-color: #3279EE;
+}
+
+
+.undercon {
+font-family: Helvetica;
+font-size: 25px;
+user-select: none;
+color: white;
+padding: 20px;
+}
+
+#addpage {
+position: fixed;
+bottom: 6%;
+right: 16%;
+width: 200px;
+height: 120px;
+}
+
+#optin {
+position: fixed;
+bottom: 6%;
+right: 2%;
+width: 200px;
+height: 120px;
+background-image: linear-gradient(to bottom right, pink, #FFDCC0);
+transition: ease 0.3s;
+}
+
+#optin:hover {
+  background-image: linear-gradient(to bottom right, #FFB1BF, #FECEA7);
 }
