@@ -95,24 +95,20 @@ function newpage()  {
 page = page + 1
 var ppage = document.getElementById("page")
 ppage.textContent = "Pages: " + page
-const newpage = document.createElement("textarea");
+const newpage = document.createElement("div");
 const center = document.createElement("center")
 newpage.id = "textarea"
+newpage.contentEditable = "true"
 document.body.appendChild(center)
 center.appendChild(newpage)
 }
-function save() {
-  var autobutton = document.getElementById("savebutton");
-  autobutton.disabled = true;
-  var time = "30000"; 
-  downloadtxt();
-}
+
 
 function downloadtxt() {
-const textareas = document.querySelectorAll('textarea');
+    const editableDivs = document.querySelectorAll('div[contentEditable="true"]');
     const textValues = [];
-    textareas.forEach(textarea => {
-        textValues.push(textarea.value);
+    editableDivs.forEach(div => {
+        textValues.push(div.innerHTML);
     });
     const htmlContent = textValues.join('\n');
     const blob = new Blob([htmlContent], { type: 'text/plain' });
@@ -123,13 +119,13 @@ const textareas = document.querySelectorAll('textarea');
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-} 
+}
 
 function tts() {
   const textareas = document.querySelectorAll("textarea");
   let textToSpeak = '';
   textareas.forEach((textarea) => {
-    textToSpeak += textarea.value + '\n'; 
+    textToSpeak += textarea.innerHTML + '\n'; 
   });
   const speechSynthesis = window.speechSynthesis;
   const utterance = new SpeechSynthesisUtterance(textToSpeak);
@@ -164,7 +160,7 @@ window.addEventListener('beforeunload', function() {
 
 function cleartextarea() {
 var textarea = document.getElementById("textarea")
-textarea.value = ""
+textarea.innerHTML = ""
 }
 
 function lockpage() {

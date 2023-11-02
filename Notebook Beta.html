@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="stylepid.css">
 </head>
 <body> 
-
+<div id="maincontainer">
 <input class="input" placeholder="Add the title here..." id="input" maxlength=25></input><p class="output" id="output"></p>
 <center><div id="divtop" class="divtop"><p class="fontp"></p><div class="tools"><button class="open" onclick="opensize()" id="open">Size Options</button><button onclick="openfont()" id="openfont">Font Options</button></div><input class="size" id="sizeinput" maxlength=3>
 </input>
@@ -30,8 +30,10 @@
 </div>
 
 
-<input class="color" id="colorinput" placeholder="Color..."><button class="downloadbutton" onclick="downloadtxt()" id="1">Download</button></input><button class="button2" id="boldbutton" id="2" onclick="normal()">Bold Font</button><button class="button3" id="alignbutton" onclick="alignleft()">Right Align</button><button class="button2" id="underline" onclick="notunderline()">Underline</button><button id="clear" onclick="cleartextarea()">Clear Page</button><div class="menu" onclick="menu()"></div><div class="pagediv"><p id="page" class="page">Pages: 1</p></div><div id="menuside"><div onclick="closemenu()"><p class="close">Close</p></div><p class="undercon">Menu 0.1</p><button class="button2" onclick="newpage()" id="addpage">+ New Page</button><button onclick="tts()" id="tts" class="tts">Text to Speech</button><button class="button3" onclick="openvivid()" id="optin">VividSpectrum Menu</button><button onclick="tts()" id="tts" class="tts">Text to Speech</button><button id="lock" onclick="lockpage()">Lock Page</button><button  onclick="importTxtFile()" class="importtxt">import .txt file</button></div><div class="vividcontainer" id="vividmenu"><div onclick="closevividmenu()"><p class="close2">Close</p></div><p class="vivp">VividSpectrum Design Beta 0.2</p><button class="green" onclick="vividspectrumgreen()">Green Palette</button><button id="red" onclick="vividspectrumred()">Red Palette</button><br><button onclick="vividspectrumpeach()" id="peach">Peach Palette</button><button onclick="vividspectrumblue()" id="blue">Default Palette</button><br><button onclick="vividspectrumyellow()" id="yellow">Yellow Palette</button><button onclick="vividspectrummagenta()" id="magenta">Magenta Palette</button></div></div>
-<textarea class="mainarea" id="textarea"></textarea>
+<input class="color" id="colorinput" placeholder="Color..."><button class="downloadbutton" onclick="downloadtxt()" id="1">Download</button></input><button class="button2" id="boldbutton" id="2" onclick="normal()">Bold Font</button><button class="button3" id="alignbutton" onclick="alignleft()">Left Align</button><button class="button2" id="underline" onclick="notunderline()">Underline</button><button id="clear" onclick="cleartextarea()">Clear Page</button><div class="menu" onclick="menu()"></div><div class="pagediv"><p id="page" class="page">Pages: 1</p></div><div id="menuside"><div onclick="closemenu()" class="closecon"><p class="close">X</p></div><p class="undercon">Menu 0.2</p><button class="button2" onclick="newpage()" id="addpage">+ New Page</button><button onclick="tts()" id="tts" class="tts">Text to Speech</button><button class="button3" onclick="openvivid()" id="optin">VividSpectrum Menu</button><button onclick="tts()" id="tts" class="tts">Text to Speech</button><button id="lock" onclick="lockpage()">Lock Page</button><button  onclick="importTxtFile()" class="importtxt">import .txt file</button><button onclick="sleep()" id="sleepbutton">Standby</button></div><div class="vividcontainer" id="vividmenu"><div class="closecon2" onclick="closevividmenu()"><p class="close2">X</p></div><p class="vivp">VividSpectrum Design Beta 0.3</p><input placeholder="Enter six digit hex code, no #" id="input2" maxlength=6></input><button class="confirm" onclick="vividspectrumrandomize()">Create</button><button onclick="downloadtheme()" class="confirm" >Download</button><button onclick="importThemeFile()" class="confirm" >Upload</button><div class="def"><p>Default Colours</p><div class="green" onclick="vividspectrumgreen()"></div><div id="red" onclick="vividspectrumred()"></div><div onclick="vividspectrumpeach()" id="peach"></div><div onclick="vividspectrumblue()" class="blue"></div><div onclick="vividspectrumyellow()" id="yellow"></div><div onclick="vividspectrummagenta()" id="magenta"></div></div></div></div>
+<div contenteditable="true" class="mainarea" id="textarea"></div>
+</div>
+<center><div id="containstandby" onclick="awake()"><p id="sleep">12:00</p></div></center>
 <script>
 var page = 1
 var underline = 1
@@ -75,7 +77,39 @@ var buttoncontainer = document.getElementById("buttoncontainer")
     buttoncontainer.style.display = "block";
   }
 }
+
+function sleep() {
+var maincontainer = document.getElementById("maincontainer")
+var sleeptime = document.getElementById("sleep")
+var containstandby = document.getElementById("containstandby")
+var textarea = document.querySelectorAll("textarea")
+maincontainer.style.display = "none"
+containstandby.style.display = "block"
+sleeptime.style.display = "block"
+textarea.style.display = "none"
+}
+
+function awake() {
+var maincontainer = document.getElementById("maincontainer")
+var sleeptime = document.getElementById("sleep")
+var containstandby = document.getElementById("containstandby")
+var textarea = document.querySelectorAll("textarea")
+maincontainer.style.display = "block"
+containstandby.style.display = "none"
+sleeptime.style.display = "none"
+textarea.style.display = "block"
+}
+function updateTime() {
+  const currentTime = new Date();
+  const hours = currentTime.getHours();
+  const minutes = currentTime.getMinutes();
+  const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+  document.getElementById("sleep").textContent = formattedTime;
+}
+
+setInterval(updateTime, 1)
 </script>
 <script src="size.js"></script>
+<script src="vividspectrumauto.js"></script>
 </body>
 </html>
