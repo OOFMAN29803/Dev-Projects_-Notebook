@@ -122,7 +122,7 @@ function downloadtxt() {
 }
 
 function tts() {
-  const textareas = document.querySelectorAll("textarea");
+  const textareas = document.querySelectorAll("div#textarea");
   let textToSpeak = '';
   textareas.forEach((textarea) => {
     textToSpeak += textarea.innerHTML + '\n'; 
@@ -136,20 +136,40 @@ function tts() {
 }
 
 async function importTxtFile() {
-      const file = await new Promise((resolve, reject) => {
+    const file = await new Promise((resolve, reject) => {
         const input = document.createElement('input');
-        const textarea = document.getElementById("textarea")
+        const textarea = document.getElementById("textarea");
         input.type = 'file';
-        input.accept = '.txt';
+        input.accept = '.txt, .png, .jpg, .jpeg, .gif'; // Specify the accepted file types
         input.onchange = () => resolve(input.files[0]);
-input.style.display = "none"        
-document.body.appendChild(input);
+        input.style.display = "none";
+        document.body.appendChild(input);
         input.click();
-      });
+    });
 
-      const content = await file.text();
-      textarea.textContent = content;
+    if (file.type.startsWith('text/')) {
+        // Handle text files
+        const content = await file.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(content, 'text/html');
+
+        // Create a div to hold the content
+        const contentDiv = document.createElement('div');
+        contentDiv.innerHTML = xmlDoc.body.innerHTML;
+
+        textarea.innerHTML = ''; // Clear any existing content
+        textarea.appendChild(contentDiv);
+    } else if (file.type.startsWith('image/')) {
+        // Handle image files
+        const image = document.createElement('img');
+        image.src = URL.createObjectURL(file);
+        textarea.innerHTML = ''; // Clear any existing content
+        textarea.appendChild(image);
+    }
 }
+
+
+
 window.addEventListener('beforeunload', function() {
   var textarea = document.getElementById("textarea");
   if (textarea.value.trim() !== "") { 
@@ -182,3 +202,26 @@ function menu() {
     menuside.style.display = "block";
   }
 }
+function aboutmenu() {
+var versionopen = document.getElementById("versionopen") 
+ if (versionopen.style.display === "block" || versionopen.style.display === "") {
+    versionopen.style.display = "none";
+  } else {
+    versionopen.style.display = "block";
+  }
+}
+
+    document.getElementById('highlightbutton').addEventListener('click', function () {
+      const contentDiv = document.getElementById('textarea');
+      const selectedText = window.getSelection().toString();
+
+      if (selectedText !== '') {
+        const contentHTML = contentDiv.innerHTML;
+        const highlightedHTML = contentHTML.replace(
+          new RegExp(`(${selectedText})`, 'g'),
+          '<span class="highlighted">$1</span>'
+        );
+
+        contentDiv.innerHTML = highlightedHTML;
+      }
+    });
