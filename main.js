@@ -172,7 +172,7 @@ async function importTxtFile() {
 
 window.addEventListener('beforeunload', function() {
   var textarea = document.getElementById("textarea");
-  if (textarea.value.trim() !== "") { 
+  if (textarea.InnerHTML.trim() !== "") { 
     console.log("Downloading text...");
     downloadtxt();
   }
@@ -211,17 +211,90 @@ var versionopen = document.getElementById("versionopen")
   }
 }
 
-    document.getElementById('highlightbutton').addEventListener('click', function () {
-      const contentDiv = document.getElementById('textarea');
-      const selectedText = window.getSelection().toString();
+document.getElementById('highlightbutton').addEventListener('click', function () {
+  const contentDiv = document.getElementById('textarea');
+  const selection = window.getSelection();
+  const range = selection.getRangeAt(0);
+  const selectedText = range.toString();
 
-      if (selectedText !== '') {
-        const contentHTML = contentDiv.innerHTML;
-        const highlightedHTML = contentHTML.replace(
-          new RegExp(`(${selectedText})`, 'g'),
-          '<span class="highlighted">$1</span>'
-        );
+  if (selectedText !== '') {
+    const span = document.createElement('span');
+    span.className = 'highlighted';
+    span.textContent = selectedText;
 
-        contentDiv.innerHTML = highlightedHTML;
-      }
-    });
+    range.deleteContents();
+    range.insertNode(span);
+  }
+});
+
+document.getElementById('underlinebutton').addEventListener('click', function () {
+  const contentDiv = document.getElementById('textarea');
+  const selection = window.getSelection();
+  const range = selection.getRangeAt(0);
+  const selectedText = range.toString();
+
+  if (selectedText !== '') {
+    const span = document.createElement('span');
+    span.className = 'underlined';
+    span.textContent = selectedText;
+
+    range.deleteContents();
+    range.insertNode(span);
+  }
+});
+
+window.addEventListener('beforeunload', function (event) {
+var textarea =  document.getElementById("textarea")
+if (textarea.innerHTML === "") {
+
+} else {
+downloadtxt();
+}
+});
+
+document.getElementById('italicbutton').addEventListener('click', function () {
+  const contentDiv = document.getElementById('textarea');
+  const selection = window.getSelection();
+  const range = selection.getRangeAt(0);
+  const selectedText = range.toString();
+
+  if (selectedText !== '') {
+    const span = document.createElement('span');
+    span.className = 'italic';
+    span.textContent = selectedText;
+
+    range.deleteContents();
+    range.insertNode(span);
+  }
+});
+document.getElementById('boldbutton').addEventListener('click', function () {
+  const contentDiv = document.getElementById('textarea');
+  const selection = window.getSelection();
+  const range = selection.getRangeAt(0);
+  const selectedText = range.toString();
+console.log("clicked")
+  if (selectedText !== '') {
+    const span = document.createElement('span');
+    span.className = 'boldstyle';
+    span.textContent = selectedText;
+
+    range.deleteContents();
+    range.insertNode(span);
+  }
+});
+
+document.getElementById('linkbutton').addEventListener('click', function () {
+  const contentDiv = document.getElementById('textarea');
+  const selection = window.getSelection();
+  const range = selection.getRangeAt(0);
+  const selectedText = range.toString();
+console.log("clicked")
+  if (selectedText !== '') {
+    const span = document.createElement('a');
+    span.className = 'hyperlink';
+    span.textContent = selectedText;
+span.href = selectedText;
+    range.deleteContents();
+    range.insertNode(span);
+  }
+});
